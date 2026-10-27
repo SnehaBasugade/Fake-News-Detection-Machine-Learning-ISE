@@ -1,0 +1,32 @@
+# ──────────────────────────────────────────────────────────────
+# render.yaml — Render.com deployment configuration
+# Docs: https://render.com/docs/blueprint-spec
+# ──────────────────────────────────────────────────────────────
+
+services:
+  - type: web
+    name: fake-news-detector
+    runtime: python
+    region: oregon           # Change to: ohio, virginia, frankfurt, singapore
+    plan: free               # free | starter | standard | pro
+
+    # Build step: install deps + train model
+    buildCommand: pip install -r requirements.txt && python model/train_model.py
+
+    # Start the app with Gunicorn (production WSGI server)
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+
+    # Environment variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: FLASK_DEBUG
+        value: "false"
+      - key: FLASK_ENV
+        value: production
+
+    # Health check endpoint
+    healthCheckPath: /health
+
+    # Auto-deploy on every push to the main branch
+    autoDeploy: true

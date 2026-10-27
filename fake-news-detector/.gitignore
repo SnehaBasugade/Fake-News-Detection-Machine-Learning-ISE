@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Model file (large binary — optionally gitignore if using Kaggle dataset)
+# model/model.pkl   ← uncomment this line if model.pkl is large (>100MB)
+
+# Kaggle datasets (large files)
+model/True.csv
+model/Fake.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
